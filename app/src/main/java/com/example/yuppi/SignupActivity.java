@@ -40,6 +40,8 @@ public class SignupActivity extends AppCompatActivity {
         registerButton      = findViewById(R.id.registerButton);
         cancelButton        = findViewById(R.id.cancelButton);
 
+
+
         //method to go back to the login page
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -57,28 +59,33 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 rootNode = FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("users");
-
                 //get all the values from xml file and convert it toString()
                 String name     = newNameEditText.getText().toString();
                 String email    = newEmailEditText.getText().toString();
                 String password = newPasswordEditText.getText().toString();
 
+                if(name.equals("") || email.equals("") || password.equals("")){
+                    Toast.makeText(SignupActivity.this, "Missing field!", Toast.LENGTH_LONG).show();
+                }else{
+                    Users users = new Users(name,email,password);
+                    //reference.child(email).setValue(users);
+                    //DatabaseReference  ref = reference.child("users").push();
 
-                Users users = new Users(name,email,password);
-
-                //reference.child(email).setValue(users);
-                //DatabaseReference  ref = reference.child("users").push();
-
-                reference.child(email).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(SignupActivity.this,"Something Went Wrong...",Toast.LENGTH_LONG).show();
+                    reference.child(name).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(SignupActivity.this,"Something Went Wrong...",Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+
+
+
 
 
 
