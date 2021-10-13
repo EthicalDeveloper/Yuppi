@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotTextView;
     Button   signupButton;
     Button   loginButton;
+    boolean  matchFound; // this is gonna check if the match happened while looping through database and looking for a match
 
 
     // declaring the database variables
@@ -51,24 +52,31 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                String username = usernameEditText.getText().toString();
+                final String username = usernameEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
 
                 if (username.equals("") || password.equals("")){
                     Toast.makeText(LoginActivity.this,"Missing field!",Toast.LENGTH_LONG).show();
                 }else{
                     try{
-                        ref.child(username).addValueEventListener(new ValueEventListener() {
+                        ref.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Users users = dataSnapshot.getValue(Users.class);
-                                if (password.equals(users.getPassword())){
-                                    Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(LoginActivity.this,MenuActivity.class);
-                                    startActivity(intent);
-                                }else{
-                                    Toast.makeText(LoginActivity.this,"Incorrect Password...",Toast.LENGTH_LONG).show();
+                                for (DataSnapshot data: dataSnapshot.getChildren()){ // loop through database and check for password and email. If match found break and toast. Else give the problem definition
+                                    if (password.equals(data.child("password").getValue(String.class)) && username.equals(data.child("email").getValue(String.class)) || username.equals(data.child("name").getValue(String.class))){
+                                        Toast.makeText(LoginActivity.this,"Login Successful!",Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(LoginActivity.this,MenuActivity.class);
+                                        startActivity(intent);
+                                        matchFound = true;
+                                        break;
+                                    }
                                 }
+
+                                if (!matchFound){
+                                    Toast.makeText(LoginActivity.this,"Incorrect username or password.",Toast.LENGTH_LONG).show();
+                                }
+
+
                             }
 
                             @Override

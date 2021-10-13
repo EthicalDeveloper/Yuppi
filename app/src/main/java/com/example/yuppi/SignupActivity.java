@@ -25,8 +25,8 @@ public class SignupActivity extends AppCompatActivity {
     Button   cancelButton;
 
     // declaring the database variables
-    FirebaseDatabase  rootNode;
-    DatabaseReference reference;
+    private FirebaseDatabase  rootNode;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
