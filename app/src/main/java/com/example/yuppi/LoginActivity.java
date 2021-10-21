@@ -37,14 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //hooking up the xml buttons to the actual variables
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        usernameEditText = (EditText) findViewById(R.id.usernameEditText); // usernameEditText variable is used to capture both the username and email
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         forgotTextView   = (TextView) findViewById(R.id.forgotTextView);
         signupButton     = (Button) findViewById(R.id.signupButton);
         loginButton      = (Button) findViewById(R.id.loginButton);
 
 
-
+        // get the instance of the firebase database
         ref = FirebaseDatabase.getInstance().getReference().child("users");
 
         // login system. It parses through firebase database and if there is a match
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                         break;
                                     }
                                 }
-
+                                // if the match is not found print. This expression only executes if the loop breaks
                                 if (!matchFound){
                                     Toast.makeText(LoginActivity.this,"Incorrect username or password.",Toast.LENGTH_LONG).show();
                                 }
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
 
                     }catch (Exception e){
-                        Toast.makeText(LoginActivity.this,"Incorrect Username or Password...",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,"Something went wrong...",Toast.LENGTH_LONG).show();
                     }
                 }
 
