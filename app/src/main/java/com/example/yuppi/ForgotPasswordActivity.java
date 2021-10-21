@@ -37,7 +37,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     // declaring the database variables
     private DatabaseReference ref;
-    private FirebaseAuth auth = FirebaseAuth.getInstance().;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
