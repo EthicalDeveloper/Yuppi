@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -15,6 +16,13 @@ public class MenuActivity extends AppCompatActivity {
     FloatingActionButton callsFloatingActionButton;
     FloatingActionButton chatsFloatingActionButton;
     FloatingActionButton settingsFloatingActionButton;
+    FirebaseUser         user;
+
+    public MenuActivity(FirebaseUser user){
+        this.user = user;
+    }
+
+    public MenuActivity(){};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
