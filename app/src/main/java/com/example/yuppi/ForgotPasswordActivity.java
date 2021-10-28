@@ -76,74 +76,27 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
 
-        // Reset the password. Sends an email if there is a match in the database for the further reset instructions
+        //Reset the password through Firebase. If the email exists then send an reset email to a user
+        // with instructions for resetting the email
+
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email   = resetEmailTextBox.getText().toString().trim(); // get the value from texview field and convert it to a string
+                FirebaseAuth auth  = FirebaseAuth.getInstance();
+                String       email = resetEmailTextBox.getText().toString();
 
-                if(email.equals("")){
-                    Toast.makeText(ForgotPasswordActivity.this, "Missing field!", Toast.LENGTH_LONG).show();
-                }else{
-                    try{
-                        ref.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot data: dataSnapshot.getChildren()){ // loop through database and check for password and email. If match found break and toast. Else give the problem definition
-                                    if (email.equals(data.child("email").getValue(String.class))){
-                                        Toast.makeText(ForgotPasswordActivity.this, "Email found!", Toast.LENGTH_LONG).show();
-
-                                        try {
-                                            // set all the properties for gmail com. Port, server and enable stl
-                                            Properties properties = new Properties();
-                                            properties.put("mail.transport.protocol", "smtp");
-                                            properties.put("mail.smtp.starttls.enable","true");
-                                            properties.put("mail.smtp.auth", "true");
-                                            properties.put("mail.smtp.host", "smtp.gmail.com");
-                                            properties.put("mail.smtp.port", "587");
-
-                                            // start the session and authenticate the gmail with username and password
-                                            Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
-                                                @Override
-                                                protected PasswordAuthentication getPasswordAuthentication() {
-                                                    return new PasswordAuthentication("yuppichatapp@gmail.com","yuppinewapp");
-                                                }
-                                            });
-
-                                            // set the message that you want to sent and pass the session as an argument
-                                            Message message = new MimeMessage(session);
-                                            message.setSubject("Email from yuppi!");
-                                            message.setContent("<h1>Email from yuppi</h1>", "text/html");
-
-                                            // set the address that you are sending the email to
-                                            Address addressTo = new InternetAddress("yuppichatapp@gmail.com");
-                                            message.setRecipient(Message.RecipientType.TO, addressTo);
-                                            Transport.send(message);
-                                        }
-                                        catch (Exception e){
-                                            e.printStackTrace();
-                                        }
-
-                                        break;
-                                    }
-                                }
-
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }catch (Exception e){
-                        Toast.makeText(ForgotPasswordActivity.this,"Something went wrong...",Toast.LENGTH_LONG).show();
+                auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(ForgotPasswordActivity.this,"Email sent to " + email, Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
+                });
             }
         });
+
+
 
 
     }

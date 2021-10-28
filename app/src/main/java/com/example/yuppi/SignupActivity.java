@@ -32,6 +32,7 @@ public class SignupActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private FirebaseAuth      mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,16 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            MenuActivity newUser = new MenuActivity(user);
+                            MenuActivity newUser = new MenuActivity(user); // add the user to the menuActivity for verification
+                            // function to verify the email through Firebase
+                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                             Intent intent = new Intent(SignupActivity.this,MenuActivity.class);
                             startActivity(intent);
                         }else {
