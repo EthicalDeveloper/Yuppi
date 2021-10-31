@@ -28,9 +28,8 @@ public class SignupActivity extends AppCompatActivity {
     Button   cancelButton;
 
     // declaring the database variables
-    private FirebaseDatabase  rootNode;
-    private DatabaseReference reference;
     private FirebaseAuth      mAuth;
+
 
 
     @Override
@@ -39,7 +38,6 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         // hooking all the xml widgets to the variables
-        newNameEditText     = findViewById(R.id.newNameEditText);
         newPasswordEditText = findViewById(R.id.newPasswordEditText);
         newEmailEditText    = findViewById(R.id.newEmailEditText);
         registerButton      = findViewById(R.id.registerButton);
@@ -65,25 +63,29 @@ public class SignupActivity extends AppCompatActivity {
                 String email    = newEmailEditText.getText().toString();
                 String password = newPasswordEditText.getText().toString();
 
+                // create an account through Firebase database system
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                    FirebaseUser user = mAuth.getCurrentUser();
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
                             MenuActivity newUser = new MenuActivity(user); // add the user to the menuActivity for verification
                             // function to verify the email through Firebase
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignupActivity.this, "Email sent...", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SignupActivity.this,VerificationMessageActivity.class); // if verify email is successfully sent then take it to VerificationMessageActivity
+                                        Bundle bundle = new Bundle(); // passing the current obtained email from the user to show in VerificationMessageActivity
+                                        bundle.putString("email",email);
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
                                     }
                                 }
                             });
-                            Intent intent = new Intent(SignupActivity.this,MenuActivity.class);
-                            startActivity(intent);
-                        }else {
+
+                        } else {
                             // If sign in fails, display a message to the user
                             Toast.makeText(SignupActivity.this, "Something Went Wrong...", Toast.LENGTH_SHORT).show();
                         }
@@ -93,45 +95,7 @@ public class SignupActivity extends AppCompatActivity {
         });
 
 
-//        // method to register and add the data to the database
-//        registerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                rootNode = FirebaseDatabase.getInstance();
-//                reference = rootNode.getReference("users");
-//                //get all the values from xml file and convert it toString()
-//                String name     = newNameEditText.getText().toString();
-//                String email    = newEmailEditText.getText().toString();
-//                String password = newPasswordEditText.getText().toString();
-//
-//                if(name.equals("") || email.equals("") || password.equals("")){
-//                    Toast.makeText(SignupActivity.this, "Missing field!", Toast.LENGTH_LONG).show();
-//                }else{
-//                    Users users = new Users(name,email,password);
-//                    //reference.child(email).setValue(users);
-//                    //DatabaseReference  ref = reference.child("users").push();
-//
-//                    reference.child(name).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful()){
-//                                Toast.makeText(SignupActivity.this,"Registration Is Complete!",Toast.LENGTH_LONG).show();
-//                            }else{
-//                                Toast.makeText(SignupActivity.this,"Something Went Wrong...",Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//                    });
-//                }
-//
-//
-//
-//
-//
-//
-//
-//
-//            }
-//        });
+
 
 
     }

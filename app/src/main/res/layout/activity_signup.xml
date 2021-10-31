@@ -39,20 +39,6 @@
             app:layout_constraintVertical_bias="0.319" />
 
         <EditText
-            android:id="@+id/newNameEditText"
-            android:layout_width="256dp"
-            android:layout_height="51dp"
-            android:ems="10"
-            android:hint="Enter your name"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.431" />
-
-        <EditText
             android:id="@+id/newEmailEditText"
             android:layout_width="256dp"
             android:layout_height="51dp"
@@ -64,7 +50,7 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.536" />
+            app:layout_constraintVertical_bias="0.464" />
 
         <EditText
             android:id="@+id/newPasswordEditText"
@@ -78,7 +64,7 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.651" />
+            app:layout_constraintVertical_bias="0.583" />
 
         <Button
             android:id="@+id/registerButton"
@@ -89,10 +75,10 @@
             android:textColor="#FBF3F3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.774" />
+            app:layout_constraintVertical_bias="0.727" />
 
         <Button
             android:id="@+id/cancelButton"
@@ -101,10 +87,9 @@
             android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.879" />
+            app:layout_constraintVertical_bias="0.83" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
