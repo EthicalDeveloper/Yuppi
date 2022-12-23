@@ -1,7 +1,10 @@
 # Yuppi
-Simple chat application
-It is not fully developed yet but it has some cool features:
-1. Contacts
-2. Login/Signup
-3. Chat
-4. Create avatar
+Android Studio Java Chat Application
+Features:
+1. Login/Signup Feature (Firebase Authentication)
+2. Email Verification
+3. Forgot Password Feature
+4. Functional User Interface
+5. Contacts/Add Contacts
+6. Realtime Database Integration
+7. In App Messaging
