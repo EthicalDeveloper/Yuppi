@@ -39,7 +39,7 @@
             app:layout_constraintVertical_bias="0.319" />
 
         <EditText
-            android:id="@+id/newEmailEditText"
+            android:id="@+id/emailEditText"
             android:layout_width="256dp"
             android:layout_height="51dp"
             android:ems="10"

@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.487" />
 
     <EditText
-        android:id="@+id/newEmailEditText"
+        android:id="@+id/emailEditText"
         android:layout_width="222dp"
         android:layout_height="60dp"
         android:ems="10"
@@ -101,43 +101,47 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.02" />
 
-    <TextView
-        android:id="@+id/cancelTextView"
-        android:layout_width="82dp"
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="86dp"
         android:layout_height="32dp"
-        android:text="Cancel"
-        android:textColor="#245CEC"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <TextView
-        android:id="@+id/createTextView"
-        android:layout_width="81dp"
-        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="#00FFFDFD"
         android:text="Create"
         android:textColor="#245CEC"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.024" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="86dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="#00FFFDFD"
+        android:text="Cancel"
+        android:textColor="#245CEC"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar5"
-        android:layout_width="437dp"
-        android:layout_height="66dp"
+        android:layout_width="433dp"
+        android:layout_height="78dp"
         android:background="#336F7171"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

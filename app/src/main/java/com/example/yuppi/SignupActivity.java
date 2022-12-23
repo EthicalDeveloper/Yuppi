@@ -12,12 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     //declaring all the variables
@@ -39,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
 
         // hooking all the xml widgets to the variables
         newPasswordEditText = findViewById(R.id.newPasswordEditText);
-        newEmailEditText    = findViewById(R.id.newEmailEditText);
+        newEmailEditText    = findViewById(R.id.emailEditText);
         registerButton      = findViewById(R.id.registerButton);
         cancelButton        = findViewById(R.id.cancelButton);
         mAuth               = FirebaseAuth.getInstance();
