@@ -62,6 +62,7 @@ public class AddContactsActivity extends AppCompatActivity {
             }
         });
 
+        // add the data to firebase database
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +72,7 @@ public class AddContactsActivity extends AppCompatActivity {
                 String homePhoneNumber = homePhoneNumberEditText.getText().toString();
                 String email = emailEditText.getText().toString();
                 String notes = notesEditText.getText().toString();
-
+                //check for restrictions
                 if(!firstName.isEmpty() && !lastName.isEmpty() && !cellPhoneNumber.isEmpty()){
                     Contacts contacts = new Contacts(firstName,lastName,cellPhoneNumber,homePhoneNumber,email,notes);
                     db = FirebaseDatabase.getInstance();
@@ -86,6 +87,8 @@ public class AddContactsActivity extends AppCompatActivity {
                             emailEditText.setText("");
                             notesEditText.setText("");
                             Toast.makeText(AddContactsActivity.this,"Contact is successfully created",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AddContactsActivity.this,ContactsActivity.class);
+                            startActivity(intent);
                         }
                     });
                 }

@@ -38,13 +38,14 @@
 
     <SearchView
         android:id="@+id/contactsSearchView"
-        android:layout_width="244dp"
-        android:layout_height="28dp"
+        android:layout_width="360dp"
+        android:layout_height="30dp"
         android:background="#FFFEFE"
-        app:circularflow_defaultRadius="50sp"
+        app:circularflow_defaultRadius="100px"
+        app:circularflow_radiusInDP="50px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.102">
@@ -83,5 +84,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.014" />
+
+    <ListView
+        android:id="@+id/contactsListView"
+        android:layout_width="395dp"
+        android:layout_height="585dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.89" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
